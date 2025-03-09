@@ -26,7 +26,7 @@ export default function RootLayout({
           <nav className="w-full bg-white px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 fixed z-20">
             <Navbar />
           </nav>
-          <main className="bg-[#f0f0ff] pt-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-58 h-[100vh]">
+          <main className="bg-[#f0f0ff] pt-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-58 min-h-[100vh]">
             {children}
           </main>
         </body>

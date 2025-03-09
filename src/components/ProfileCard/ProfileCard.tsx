@@ -1,19 +1,46 @@
+import React from 'react'
+import prisma from '@/lib/client';
+import { auth } from '@clerk/nextjs/server';
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
-export default function ProfileCard() {
+export default async function ProfileCard({ type }: {
+    type: "home" | "profile"
+}) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return null;
+    }
+
+    const user = await prisma.user.findFirst({
+        where: {
+            id: userId
+        },
+        include: {
+            _count: {
+                select: {
+                    followers: true
+                }
+            }
+        }
+    })
+
+    if (!user) {
+        return null;
+    }
+
     return (
         <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-6">
             <div className="h-20 relative">
                 <Image
-                    src={"https://hd.wallpaperswide.com/thumbs/serene_lake_green_pasture_and_majestic_mountain_view-t2.jpg"}
+                    src={user.cover ? user.cover : "/farm-color-icon.png"}
                     alt=""
                     fill
-                    className="rounded-md object-cover"
+                    className="rounded-md object-cover object-center"
                 />
                 <Image
-                    src={"https://hd.wallpaperswide.com/thumbs/serene_lake_green_pasture_and_majestic_mountain_view-t2.jpg"}
+                    src={user.avatar ? user.avatar : "/account-grey-icon.png"}
                     alt=""
                     width={48}
                     height={48}
@@ -23,18 +50,23 @@ export default function ProfileCard() {
 
             <div className="flex flex-col gap-2 items-center">
                 <span className="text-lg">
-                    abc
+                    {user.name && user.surname
+                        ? `${user.name} ${user.surname}`
+                        : user.username}
                 </span>
 
                 <span className="text-xs text-[#333333]">
-                    0 Followers
+                    {user._count.followers} Followers
                 </span>
 
-                <Link href={`/profile/${'text'}`}>
-                    <button className='cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm'>
-                        My Profile
-                    </button>
-                </Link>
+                {type === "home" ?
+                    <Link href={`/profile/${user.username}`}>
+                        <button className='cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm'>
+                            My Profile
+                        </button>
+                    </Link> :
+                    null
+                }
             </div>
         </div>
     )

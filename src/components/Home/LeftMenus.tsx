@@ -6,8 +6,8 @@ export default function LeftMenus({ type }: {
 }) {
     return (
         <div className='flex flex-col gap-4'>
-            {type === "home" ?
-                <ProfileCard /> :
+            {type === "home"||"profile" ?
+                <ProfileCard type={type}/> :
                 null
             }
         </div>

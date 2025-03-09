@@ -11,7 +11,6 @@ const lilita = Lilita_One({
     weight: '400',
 })
 
-
 export default function Navbar() {
     return (
         <div className="h-20 flex items-center justify-between">

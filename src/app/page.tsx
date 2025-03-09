@@ -1,4 +1,6 @@
+import CenterMenus from "@/components/Home/CenterMenus";
 import LeftMenus from "@/components/Home/LeftMenus";
+import RightMenus from "@/components/Home/RightMenus";
 
 export default function Home() {
   return (
@@ -7,10 +9,11 @@ export default function Home() {
         <LeftMenus type="home" />
       </div>
       <div className="w-full xl:w-[50%] lg:w-[70%]">
-        <div className="flex flex-col gap-6">
-        </div>
+        <CenterMenus />
       </div>
       <div className="hidden xl:block xl:w-[25%] lg:block w-[30%]">
+        abc
+        <RightMenus />
       </div>
     </div>
   )
