@@ -16,7 +16,7 @@ export const followFunc = async (userId: any) => {
         const alreadyFollow = await prisma.follower.findFirst({
             where: {
                 followerId: currentUserId,
-                follwingId: userId
+                followingId: userId
             }
         })
 
@@ -253,6 +253,7 @@ export const deletePost = async (postId: number) => {
         revalidatePath("/")
     } catch (err) {
         console.log(err);
+        throw new Error("Somrt")
     }
 };
 
@@ -317,7 +318,7 @@ export const addComment = async (postId: number, desc: string) => {
     }
 };
 
-export const deleteComment = async (commentId: number) => {
+export const deleteComment = async (commentId: any,postId:any) => {
     const { userId } = await auth();
 
     if (!userId) {
@@ -327,12 +328,13 @@ export const deleteComment = async (commentId: number) => {
     try {
         await prisma.comment.delete({
             where: {
-                id: commentId,
+                userId,
+                id:commentId,
+                postId: postId
             },
         });
-    }
-    catch (err) {
+        revalidatePath("/")
+    } catch (err) {
         console.log(err);
-        throw new Error("Something went wrong!");
     }
 }

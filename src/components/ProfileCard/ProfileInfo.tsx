@@ -6,6 +6,7 @@ import { User } from '@prisma/client';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '@/lib/client';
 import UpdateProfile from './UpdateProfile';
+import FollowUnfollow from './Follow/FollowUnfollow';
 
 export default async function ProfileInfo({ user }: {
     user?: User
@@ -62,13 +63,13 @@ export default async function ProfileInfo({ user }: {
                 {currentUserId === user?.id ? (
                     <UpdateProfile user={user} />
                 ) : (
-                    <Link href="/" className="text-blue-500 text-xs">
+                    <Link href="/" className="text-[#9146ff] text-xs">
                         See all
                     </Link>
                 )}
             </div>
 
-            <div className="flex flex-col gap-4 text-gray-500">
+            <div className="flex flex-col gap-4 text-[#333333]">
                 <div className="flex flex-col items-start gap-2">
                     <span className="text-xl text-black">
                         {user?.name && user?.surname
@@ -89,16 +90,14 @@ export default async function ProfileInfo({ user }: {
                     </span>
                 </div>
 
-                {/*
-        {currentUserId && currentUserId !== user?.id && (
-          <FollowUnfollow
-            userId={user?.id}
-            isUserBlocked={isUserBlocked}
-            isFollowing={isFollowing}
-            isFollowingSent={isFollowingSent}
-          />
-        )}
-        */}
+                {currentUserId && currentUserId !== user?.id && (
+                    <FollowUnfollow
+                        userId={user?.id}
+                        isUserBlocked={isUserBlocked}
+                        isFollowing={isFollowing}
+                        isFollowingSent={isFollowingSent}
+                    />
+                )}
             </div>
         </div>
     )

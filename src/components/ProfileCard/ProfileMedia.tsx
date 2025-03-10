@@ -1,7 +1,6 @@
 import prisma from '@/lib/client'
 import { User } from '@prisma/client'
 import Image from "next/image";
-import Link from "next/link";
 
 export default async function ProfileMedia({ user }: {
     user?: User
@@ -21,19 +20,13 @@ export default async function ProfileMedia({ user }: {
 
     return (
         <div>
-            <div className="flex justify-between items-center">
-                <span className="text-[#333333] text-md">
-                    User Media
-                </span>
+            <span className="text-[#333333] text-md">
+                User Media
+            </span>
 
-                <Link href="/" className="text-[#9146ff] text-xs">
-                    See all
-                </Link>
-            </div>
-
-            <div className="flex gap-2 justify-between flex-wrap">
+            <div className="flex gap-2 justify-between flex-wrap mt-2">
                 {postsWithMedia.length
-                    ? postsWithMedia.map((post) => {
+                    ? postsWithMedia.filter((post) => post?.img !== "").map((post) => {
                         return (
                             <div className="relative w-1/5 h-12" key={post.id}>
                                 <Image

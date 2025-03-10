@@ -47,6 +47,7 @@ export default function Post({ post }: {
 
             <Suspense fallback="Loading...">
                 <PostInteraction
+                userid={post.user.id}
                     postId={post.id}
                     likes={post.likes.map((like) => like.userId)}
                     commentNumber={post._count.comments}

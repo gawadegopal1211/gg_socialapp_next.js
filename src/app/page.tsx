@@ -12,7 +12,6 @@ export default function Home() {
         <CenterMenus />
       </div>
       <div className="hidden xl:block xl:w-[25%] lg:block w-[30%]">
-        abc
         <RightMenus />
       </div>
     </div>

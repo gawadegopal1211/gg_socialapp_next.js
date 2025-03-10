@@ -1,4 +1,5 @@
 import LeftMenus from '@/components/Home/LeftMenus'
+import RightMenus from '@/components/Home/RightMenus'
 import AllPost from '@/components/Post/AllPost'
 import prisma from '@/lib/client'
 import { auth } from '@clerk/nextjs/server'
@@ -94,7 +95,7 @@ export default async function Profile({ params }: {
         </div>
       </div>
       <div className="hidden xl:block xl:w-[25%] lg:block w-[30%]">
-        {/*Right Menus*/}
+        <RightMenus user={user}/>
       </div>
     </div>
   )

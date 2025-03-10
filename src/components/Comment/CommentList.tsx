@@ -3,8 +3,9 @@
 import React, { useOptimistic, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { Comment, User } from '@prisma/client';
-import { addComment } from '@/lib/action';
+import { addComment, deleteComment } from '@/lib/action';
 import Image from 'next/image';
+import { MdDeleteOutline } from "react-icons/md";
 
 type CommentWithUser = Comment & { user: User };
 
@@ -44,13 +45,25 @@ export default function CommentList({
         try {
             const createdComment = await addComment(postId, desc);
             setComment((prev) => [createdComment, ...prev]);
-        } catch (err) { }
+        } catch (err) {
+            console.log(err)
+        }
+    };
+
+    const deleteCmmt = async (commentId: any, postId: any) => {
+        if (!user) return;
+        try {
+            await deleteComment(commentId, postId);
+            setComment(comments);
+        } catch (err) {
+            console.log(err)
+        }
     };
 
     const [optimistic, setOptimistic] = useOptimistic(comment, (state, value: CommentWithUser) => [value, ...state]);
 
     return (
-        <>
+        <div>
             {user && (
                 <div className="flex items-center gap-4">
                     <Image
@@ -75,12 +88,15 @@ export default function CommentList({
             )}
 
 
-            <div className="flex items-center justify-end">
+            <div className="flex justify-end">
                 <p
                     className='text-sm text-[#333333] cursor-pointer mt-1.5'
                     onClick={() => setShow(!show)}
                 >
-                    {show && postId ? "Hide comment(s)" : "Show comment(s)"}
+                    {optimistic?.length === 0 ?
+                        null :
+                        <span>{show && postId ? optimistic?.length === 1 ?"Hide comment":"Hide comments" : optimistic?.length === 1 ?"Show comment":"Show comments"}</span>
+                    }
                 </p>
             </div>
 
@@ -101,13 +117,24 @@ export default function CommentList({
                                         ? comment.user.name + " " + comment.user.surname
                                         : comment.user.username}
                                 </span>
-                                <p>{comment.desc}</p>
+
+                                <div className='flex justify-between items-center'>
+                                    <p>{comment.desc}</p>
+
+                                    {comment.user.id === user?.id ?
+                                        <MdDeleteOutline
+                                            className='text-md text-red-900 cursor-pointer'
+                                            onClick={() => deleteCmmt(comment?.id, postId)}
+                                        /> :
+                                        null
+                                    }
+                                </div>
                             </div>
                         </div>
                     ))}
                 </div> :
                 null
             }
-        </>
+        </div>
     )
 }
