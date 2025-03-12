@@ -7,7 +7,7 @@ export default function AdOrInstructions() {
     return (
         <div className="p-4 bg-white rounded-xl shadow-lg text-sm flex flex-col gap-4 mb-4">
             <div className="flex items-center justify-between text-[#333333] font-medium">
-                <span>Instructions</span>
+                <span>Advertisement</span>
 
                 <FaInfoCircle className='text-[#9146ff] text-lg'/>
             </div>
@@ -22,17 +22,11 @@ export default function AdOrInstructions() {
                 />
             </div>
 
-
-
             <span className="text-[#9146ff] font-medium">
                 <Link href={"https://www.pexels.com/photo/turned-on-laptop-computer-574073/"}>
                     Photo by Lukas
                 </Link>
             </span>
-
-            <p>
-
-            </p>
         </div>
     )
 }

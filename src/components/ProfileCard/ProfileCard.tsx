@@ -67,6 +67,12 @@ export default async function ProfileCard({ type }: {
                     </Link> :
                     null
                 }
+
+                <Link href={`/peoples/${user.username}`}>
+                    <button className='cursor-pointer text-center bg-[#f0f0ff] text-[#9146ff] p-1.5 rounded-lg text-sm'>
+                        Connect with friends
+                    </button>
+                </Link>
             </div>
         </div>
     )

@@ -34,7 +34,7 @@ export default function UpdateProfile({ user }: {
                 Update
             </span>
             {open && (
-                <div className="absolute w-screen h-screen top-0 left-0 bg-[#9146ff] bg-opacity-65 flex items-center justify-center z-50">
+                <div className="absolute w-full h-full top-0 left-0 bg-[#f0f0ff] border-b-2 border-[#9146ff] shadow-2xl flex items-center justify-center z-50">
                     <form
                         action={(formData) => formAction({ formData, cover: cover?.secure_url || "" })}
                         className="p-12 bg-white rounded-lg shadow-md flex flex-col gap-2 w-full md:w-1/2 xl:w-1/3 relative"

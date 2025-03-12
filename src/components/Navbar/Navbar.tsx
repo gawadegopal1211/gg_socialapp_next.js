@@ -28,11 +28,13 @@ export default function Navbar() {
                         <FaHouseChimney />
                         <span>Home</span>
                     </Link>
-                    
+
+                    {/*
                     <Link href="/friends" className="flex items-center justify-start gap-1">
                         <FaUserGroup />
                         <span>Friends</span>
                     </Link>
+                    */}
                 </div>
             </div>
 

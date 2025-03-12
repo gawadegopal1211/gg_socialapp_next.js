@@ -26,10 +26,12 @@ export default function Sidedrawer() {
                         <span>Home</span>
                     </Link>
 
+                    {/*
                     <Link href="/friends" className="flex items-center justify-start gap-2 w-28">
                         <FaUserGroup />
                         <span>Friends</span>
                     </Link>
+                    */}
                 </div>
             )}
         </div>
