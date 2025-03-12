@@ -1,5 +1,4 @@
 import React from 'react'
-import { Lilita_One } from "next/font/google"
 import Link from 'next/link'
 import { FaHouseChimney } from "react-icons/fa6";
 import { FaUserGroup } from "react-icons/fa6";
@@ -7,19 +6,13 @@ import { MdAccountCircle } from "react-icons/md";
 import { ClerkLoading, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Sidedrawer from './Sidedrawer';
 
-const lilita = Lilita_One({
-    weight: '400',
-})
-
 export default function Navbar() {
     return (
         <div className="h-20 flex items-center justify-between">
             {/*Heading*/}
-            <div className={lilita.className} >
                 <Link href="/" className="font-bold text-2xl text-[#9146ff]">
                     GG SOCIAL
                 </Link>
-            </div>
 
             {/*Center Menus*/}
             <div className="w-[50%] hidden md:flex text-sm items-center justify-between">
