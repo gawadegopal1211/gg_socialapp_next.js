@@ -44,7 +44,13 @@ export default async function page({ params }: {
                 blockedId: user?.id,
             },
         });
-        res ? (isUserBlocked = true) : (isUserBlocked = false);
+        //res ? (isUserBlocked = true) : (isUserBlocked = false);
+        if (res) {
+            isUserBlocked = true
+        }
+        else {
+            isUserBlocked = false
+        }
 
         const resfollow = await prisma.follower.findFirst({
             where: {
@@ -53,7 +59,11 @@ export default async function page({ params }: {
             },
         });
 
-        resfollow ? (isFollowing = true) : (isFollowing = false);
+        if (resfollow) {
+            isFollowing = true
+        } else {
+            isFollowing = false
+        };
 
         const resfollowreq = await prisma.followRequest.findFirst({
             where: {
@@ -62,7 +72,11 @@ export default async function page({ params }: {
             },
         });
 
-        resfollowreq ? (isFollowingSent = true) : (isFollowingSent = false);
+        if (resfollowreq) {
+            isFollowingSent = true
+        } else {
+            isFollowingSent = false
+        };
     }
 
     return (

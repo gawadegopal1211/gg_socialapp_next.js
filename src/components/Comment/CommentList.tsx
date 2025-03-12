@@ -50,7 +50,7 @@ export default function CommentList({
         }
     };
 
-    const deleteCmmt = async (commentId: any, postId: any) => {
+    const deleteCmmt = async (commentId?: number, postId?: number) => {
         if (!user) return;
         try {
             await deleteComment(commentId, postId);

@@ -22,13 +22,15 @@ const PostInteraction = ({
 
     const [optimistic, setOptimistic] = useOptimistic(
         likeState,
-        (state, value) => {
+        (state) => {
             return {
                 likeCount: state.isLiked ? state.likeCount - 1 : state.likeCount + 1,
                 isLiked: !state.isLiked,
             };
         }
     );
+
+    console.log(isLoaded)
 
     const likeAction = async () => {
         setOptimistic("");

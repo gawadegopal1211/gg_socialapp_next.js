@@ -35,6 +35,7 @@ export default function AddPost() {
                                 placeholder="What's on your mind?"
                                 className="bg-[#f0f0ff] rounded-lg p-2 w-full"
                                 name="desc"
+                                value={desc}
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </div>
@@ -44,7 +45,7 @@ export default function AddPost() {
                     <div className="w-full flex items-center justify-between gap-4 mt-4 text-[#333333] flex-wrap">
                         <CldUploadWidget
                             uploadPreset="ggsocial"
-                            onSuccess={(result, { widget }) => {
+                            onSuccess={(result) => {
                                 setImg(result.info);
                             }}
                         >

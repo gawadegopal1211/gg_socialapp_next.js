@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { FaHouseChimney } from "react-icons/fa6";
-import { FaUserGroup } from "react-icons/fa6";
+//import { FaUserGroup } from "react-icons/fa6";
 import { MdAccountCircle } from "react-icons/md";
 import { ClerkLoading, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Sidedrawer from './Sidedrawer';
