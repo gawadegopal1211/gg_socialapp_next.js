@@ -117,71 +117,14 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.Health_checkScalarFieldEnum = {
   id: 'id',
-  username: 'username',
-  avatar: 'avatar',
-  cover: 'cover',
-  name: 'name',
-  surname: 'surname',
-  description: 'description',
-  city: 'city',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.PostScalarFieldEnum = {
-  id: 'id',
-  desc: 'desc',
-  img: 'img',
-  createdAt: 'createdAt',
-  userId: 'userId'
-};
-
-exports.Prisma.CommentScalarFieldEnum = {
-  id: 'id',
-  desc: 'desc',
-  createdAt: 'createdAt',
-  userId: 'userId',
-  postId: 'postId'
-};
-
-exports.Prisma.LikeScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  userId: 'userId',
-  postId: 'postId',
-  commentId: 'commentId'
-};
-
-exports.Prisma.FollowerScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  followerId: 'followerId',
-  followingId: 'followingId'
-};
-
-exports.Prisma.FollowRequestScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  senderId: 'senderId',
-  receiverId: 'receiverId'
-};
-
-exports.Prisma.BlockScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  blockerId: 'blockerId',
-  blockedId: 'blockedId'
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -191,13 +134,7 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Post: 'Post',
-  Comment: 'Comment',
-  Like: 'Like',
-  Follower: 'Follower',
-  FollowRequest: 'FollowRequest',
-  Block: 'Block'
+  health_check: 'health_check'
 };
 
 /**
