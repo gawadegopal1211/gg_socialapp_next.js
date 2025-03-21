@@ -53,6 +53,8 @@ export default async function ProfileInfo({ user }: {
         resfollowreq ? (isFollowingSent = true) : (isFollowingSent = false);
     }
 
+    console.log(currentUserId,user?.id+'1', 'bebo')
+
     return (
         <div>
             <div className="flex justify-between items-center mb-1">

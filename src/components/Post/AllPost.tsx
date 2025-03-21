@@ -8,6 +8,8 @@ export default async function AllPost({ username }: {
 }) {
     const { userId } = await auth();
 
+    console.log(userId, 'kareena')
+
     let posts: any[] = [];
 
     if (username) {
@@ -73,6 +75,8 @@ export default async function AllPost({ username }: {
             },
         });
     }
+
+    console.log(posts,'kareena')
 
     return (
         <div className='p-4 bg-white rounded-xl shadow-lg text-md flex flex-col gap-8'>

@@ -53,6 +53,8 @@ export default async function Profile({ params }: {
     return notFound();
   }
 
+  console.log(user,'bebo')
+
   return (
     <div className="flex gap-6 p-4">
       <div className="hidden xl:block w-[20%]">

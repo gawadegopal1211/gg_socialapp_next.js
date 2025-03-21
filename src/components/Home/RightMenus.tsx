@@ -3,6 +3,7 @@ import { User } from '@prisma/client';
 import ProfileInfo from '../ProfileCard/ProfileInfo';
 import ProfileMedia from '../ProfileCard/ProfileMedia';
 import AdOrInstructions from '../AdOrInstructions';
+import FriendRequests from '../ProfileCard/Follow/FriendRequests';
 
 export default async function RightMenus({ user }: {
     user?: User
@@ -26,6 +27,7 @@ export default async function RightMenus({ user }: {
 
            
                 <AdOrInstructions/>
+                <FriendRequests />
         </div>
     )
 }
