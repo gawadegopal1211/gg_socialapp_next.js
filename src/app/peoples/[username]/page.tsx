@@ -1,6 +1,4 @@
-import FollowUnfollow from '@/components/ProfileCard/Follow/FollowUnfollow';
 import prisma from '@/lib/client';
-import { auth } from '@clerk/nextjs/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -31,41 +29,13 @@ export default async function page({ params }: {
 
     const users = await prisma.user.findMany({})
 
-    let isUserBlocked = false;
-    let isFollowing = false;
-    let isFollowingSent = false;
-
-    const { userId: currentUserId } = await auth();
-
-    if (currentUserId) {
-        const res = await prisma.block.findFirst({
-            where: {
-                blockerId: currentUserId,
-                blockedId: user?.id,
-            },
-        });
-        res ? (isUserBlocked = true) : (isUserBlocked = false);
-
-        const resfollow = await prisma.follower.findFirst({
-            where: {
-                followerId: currentUserId,
-                followingId: user?.id,
-            },
-        });
-
-        resfollow ? (isFollowing = true) : (isFollowing = false);
-
-        const resfollowreq = await prisma.followRequest.findFirst({
-            where: {
-                senderId: currentUserId,
-                receiverId: user?.id,
-            },
-        });
-
-        resfollowreq ? (isFollowingSent = true) : (isFollowingSent = false);
-    }
-
-    console.log(currentUserId, user?.id + '1', 'bebo')
+    const followers = await prisma.follower.findMany({
+        where: {
+            followerId: user.id
+        }
+    })
+    const followerIds = followers?.map((v) => v.followingId)
+    console.log(followerIds, 'dobi')
 
     return (
         <div className="flex flex-col gap-6 p-4">
@@ -77,7 +47,7 @@ export default async function page({ params }: {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    {users?.length !== 0 && users.filter((self) => self.id !== user.id).map((usersingle) => {
+                    {users?.length !== 0 && users.filter((self) => self.id !== user.id).filter((req) => !followerIds.includes(req.id)).map((usersingle) => {
                         return (
                             <div className="flex flex-col md:flex-row items-center gap-4" key={usersingle.id}>
                                 <Image
@@ -92,16 +62,33 @@ export default async function page({ params }: {
                                         {usersingle.username}
                                     </Link>
                                 </span>
+                            </div>
+                        )
+                    })}
+                </div>
 
-                                {user?.id && (
-                                    <FollowUnfollow
-                                        userId={user?.id}
-                                        isUserBlocked={isUserBlocked}
-                                        isFollowing={isFollowing}
-                                        isFollowingSent={isFollowingSent}
-                                        type={"users"}
-                                    />
-                                )}
+                <div className="flex justify-between items-center">
+                    <span className="text-[#333333] text-md">
+                        Friends
+                    </span>
+                </div>
+
+                <div className='flex flex-col gap-2'>
+                    {users?.length !== 0 && users.filter((self) => self.id !== user.id).filter((req) => followerIds.includes(req.id)).map((usersingle) => {
+                        return (
+                            <div className="flex flex-col md:flex-row items-center gap-4" key={usersingle.id}>
+                                <Image
+                                    src={usersingle.avatar || "/account-grey-icon.png"}
+                                    alt=""
+                                    width={40}
+                                    height={40}
+                                    className="w-10 h-10 rounded-full object-cover"
+                                />
+                                <span className="text-md">
+                                    <Link href={`/profile/${usersingle.username}`}>
+                                        {usersingle.username}
+                                    </Link>
+                                </span>
                             </div>
                         )
                     })}
