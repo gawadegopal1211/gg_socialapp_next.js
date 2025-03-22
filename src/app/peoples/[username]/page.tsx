@@ -44,13 +44,7 @@ export default async function page({ params }: {
                 blockedId: user?.id,
             },
         });
-        //res ? (isUserBlocked = true) : (isUserBlocked = false);
-        if (res) {
-            isUserBlocked = true
-        }
-        else {
-            isUserBlocked = false
-        }
+        res ? (isUserBlocked = true) : (isUserBlocked = false);
 
         const resfollow = await prisma.follower.findFirst({
             where: {
@@ -59,11 +53,7 @@ export default async function page({ params }: {
             },
         });
 
-        if (resfollow) {
-            isFollowing = true
-        } else {
-            isFollowing = false
-        };
+        resfollow ? (isFollowing = true) : (isFollowing = false);
 
         const resfollowreq = await prisma.followRequest.findFirst({
             where: {
@@ -72,12 +62,10 @@ export default async function page({ params }: {
             },
         });
 
-        if (resfollowreq) {
-            isFollowingSent = true
-        } else {
-            isFollowingSent = false
-        };
+        resfollowreq ? (isFollowingSent = true) : (isFollowingSent = false);
     }
+
+    console.log(currentUserId, user?.id + '1', 'bebo')
 
     return (
         <div className="flex flex-col gap-6 p-4">
@@ -101,13 +89,11 @@ export default async function page({ params }: {
                                 />
                                 <span className="text-md">
                                     <Link href={`/profile/${usersingle.username}`}>
-                                        {usersingle.name && usersingle.surname
-                                            ? usersingle.name + " " + usersingle.surname
-                                            : usersingle.username}
+                                        {usersingle.username}
                                     </Link>
                                 </span>
 
-                                {user?.id && (
+                                {currentUserId && currentUserId !== user?.id && (
                                     <FollowUnfollow
                                         userId={user?.id}
                                         isUserBlocked={isUserBlocked}
