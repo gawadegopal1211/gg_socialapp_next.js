@@ -17,7 +17,7 @@ const FriendRequests = async () => {
     },
   });
 
-  if (requests.length === 0) return null;
+  if (requests.filter((rq)=>rq.senderId!==userId).length === 0) return null;
 
   const user = await prisma.user.findFirst({
     where: {
