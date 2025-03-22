@@ -32,19 +32,19 @@ export default async function ProfileCard({ type }: {
 
     return (
         <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-6">
-            <div className="h-20 relative">
+            <div className="h-44 lg:h-20 relative">
                 <Image
                     src={user.cover ? user.cover : "/farm-color-icon.png"}
                     alt=""
                     fill
-                    className="rounded-md object-cover object-center"
+                    className="rounded-md object-cover object-center transform transition duration-250 hover:scale-105"
                 />
                 <Image
                     src={user.avatar ? user.avatar : "/account-grey-icon.png"}
                     alt=""
                     width={48}
                     height={48}
-                    className="rounded-full object-cover w-12 h-12 absolute left-0 right-0 m-auto -bottom-4 ring-2 ring-white z-10"
+                    className="rounded-full object-cover w-32 h-32 lg:h-12 lg:w-12 absolute left-0 right-0 m-auto -bottom-4 ring-2 ring-white z-10 transform transition duration-250 hover:scale-105"
                 />
             </div>
 
@@ -61,7 +61,7 @@ export default async function ProfileCard({ type }: {
 
                 {type === "home" ?
                     <Link href={`/profile/${user.username}`}>
-                        <button className='cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm'>
+                        <button className='cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm transform transition duration-250 hover:scale-105'>
                             My Profile
                         </button>
                     </Link> :
@@ -69,7 +69,7 @@ export default async function ProfileCard({ type }: {
                 }
 
                 <Link href={`/peoples/${user.username}`}>
-                    <button className='cursor-pointer text-center bg-[#f0f0ff] text-[#9146ff] p-1.5 rounded-lg text-sm'>
+                    <button className='cursor-pointer text-center bg-[#f0f0ff] text-[#9146ff] p-1.5 rounded-lg text-sm transform transition duration-250 hover:scale-105'>
                         Connect with friends
                     </button>
                 </Link>

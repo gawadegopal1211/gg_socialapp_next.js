@@ -36,7 +36,6 @@ const FriendRequests = async () => {
     return null;
   }
 
-  console.log('bebo', requests)
   return (
     <div className="p-4 bg-white rounded-xl shadow-lg text-sm flex flex-col gap-4 mb-4">
       <div className="flex items-center justify-between text-[#333333] font-medium">

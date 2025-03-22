@@ -33,7 +33,7 @@ export default async function ProfileMedia({ user }: {
                                     src={post.img!}
                                     alt=""
                                     fill
-                                    className="object-cover rounded-md"
+                                    className="object-cover rounded-md transform transition duration-250 hover:scale-105"
                                 />
                             </div>
                         )

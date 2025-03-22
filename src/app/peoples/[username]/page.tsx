@@ -35,7 +35,6 @@ export default async function page({ params }: {
         }
     })
     const followerIds = followers?.map((v) => v.followingId)
-    console.log(followerIds, 'dobi')
 
     return (
         <div className="flex flex-col gap-6 p-4">

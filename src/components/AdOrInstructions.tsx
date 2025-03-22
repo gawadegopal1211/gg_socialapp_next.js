@@ -12,13 +12,13 @@ export default function AdOrInstructions() {
                 <FaInfoCircle className='text-[#9146ff] text-lg'/>
             </div>
 
-            <div className="flex justify-center items-center mt-1 gap-2">
+            <div className="flex justify-center items-center mt-1 gap-2 rounded-lg overflow-hidden">
                 <Image
                     src="/pexels-goumbik-574073.jpg"
                     alt=""
                     width={320}
                     height={100}
-                    className="rounded-lg object-cover"
+                    className="rounded-lg object-cover origin-top-left transform transition duration-250 hover:scale-105"
                 />
             </div>
 

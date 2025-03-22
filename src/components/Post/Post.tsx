@@ -43,7 +43,7 @@ export default function Post({ post }: {
                 )}
                 <p>{post.desc}</p>
             </div>
-            <hr className="h-px my-1 bg-[#f0f0ff] border-0 dark:bg-gray-700" />
+            <hr className="h-[0.5px] my-1 bg-[#f0f0ff] border-0 dark:bg-gray-700" />
 
             <Suspense fallback="Loading...">
                 <PostInteraction
@@ -57,6 +57,8 @@ export default function Post({ post }: {
             <Suspense fallback="Loading...">
                 <Comment postId={post.id} />
             </Suspense>
+
+            <hr className="h-[3px] my-1 bg-[#f0f0ff] border-0 dark:bg-gray-700" />
         </div>
     )
 }

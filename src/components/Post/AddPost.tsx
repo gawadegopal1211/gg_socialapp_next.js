@@ -35,7 +35,7 @@ export default function AddPost() {
                                 placeholder="What's on your mind?"
                                 className="bg-[#f0f0ff] rounded-lg p-2 w-full"
                                 name="desc"
-                                value={desc}
+                                //value={desc}
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </div>
@@ -52,7 +52,7 @@ export default function AddPost() {
                             {({ open }) => {
                                 return (
                                     <div
-                                        className="flex items-center gap-2 mx-3 cursor-pointer"
+                                        className="flex items-center gap-2 mx-3 cursor-pointer transform transition duration-250 hover:scale-105"
                                         onClick={() => open()}
                                     >
                                         <Image src="/add-image-photo-icon.png" alt="" width={30} height={30} />
@@ -62,7 +62,7 @@ export default function AddPost() {
                             }}
                         </CldUploadWidget>
 
-                        <button className='cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm'>
+                        <button className='cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm transform transition duration-250 hover:scale-105'>
                             {pending ? "Sending" : "Send"}
                         </button>
                     </div>

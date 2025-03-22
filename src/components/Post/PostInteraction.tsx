@@ -65,7 +65,7 @@ const PostInteraction = ({
                                 width={16}
                                 height={16}
                                 alt=""
-                                className="cursor-pointer"
+                                className="cursor-pointer transform transition duration-250 hover:scale-125"
                             />
                         </button>
                     </form>

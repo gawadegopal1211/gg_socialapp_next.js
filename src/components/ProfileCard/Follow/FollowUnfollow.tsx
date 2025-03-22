@@ -63,7 +63,7 @@ export default function FollowUnfollow({
             <form action={follow}>
                 {optimisticState.blocked ?
                     null :
-                    <button className="w-full cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm">
+                    <button className="w-full cursor-pointer text-center bg-[#9146ff] text-white p-1.5 rounded-lg text-sm transform transition duration-250 hover:scale-105">
                         {optimisticState.following ?
                             "Following" : optimisticState.followingRequestSent ?
                                 "Friend Request Sent" :
