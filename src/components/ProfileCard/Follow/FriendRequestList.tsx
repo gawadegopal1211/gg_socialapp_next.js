@@ -36,7 +36,7 @@ const FriendRequestList = ({ requests }: { requests: RequestWithUser[] }) => {
     );
     return (
         <div className="">
-            {optimisticRequests.map((request) => (
+            {optimisticRequests.filter((rq) => rq.senderId !== userId).map((request) => (
                 <div className="flex items-center justify-between" key={request.id}>
                     <Link href={`/profile/${request.sender.username}`}>
                         <div className="flex items-center gap-4">
