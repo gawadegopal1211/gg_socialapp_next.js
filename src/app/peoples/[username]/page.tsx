@@ -93,7 +93,7 @@ export default async function page({ params }: {
                                     </Link>
                                 </span>
 
-                                {currentUserId && currentUserId !== user?.id && (
+                                {user?.id && (
                                     <FollowUnfollow
                                         userId={user?.id}
                                         isUserBlocked={isUserBlocked}
